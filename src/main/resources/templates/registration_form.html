@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Registration Form</title>
+</head>
+<body>
+<h1>Registration Form</h1>
+
+<form th:action="@{/registration}" th:object="${userRegistrationDto}" method="post">
+    <label for="email">Email:</label>
+    <input type="text" th:field="*{email}" required/><br/>
+
+    <label for="password">Password:</label>
+    <input type="password" th:field="*{password}" required/><br/>
+
+    <label for="accountType">Account Type:</label>
+    <select th:field="*{accountType}" id="accountTypeSelect">
+        <option value="none">Choose an account type</option>
+        <option value="PATIENT">Patient</option>
+        <option value="DOCTOR">Doctor</option>
+    </select><br/>
+
+    <!--    <div th:switch="${userRegistrationDto.accountType}" id="accountFields">-->
+    <!--        <div th:case="'PATIENT'">-->
+<!--    <label for="firstName">First Name:</label>-->
+<!--    <input type="text" th:field="*{firstName}" required/><br/>-->
+
+<!--    <label for="lastName">Last Name:</label>-->
+<!--    <input type="text" th:field="*{lastName}" required/><br/>-->
+
+<!--    <label for="pesel">PESEL:</label>-->
+<!--    <input type="text" th:field="*{pesel}" required/><br/>-->
+
+<!--    <label for="dateOfBirth">Date of birth:</label>-->
+<!--    <input type="date" th:field="*{dateOfBirth}" required/><br/>-->
+
+<!--    <label for="gender">Gender:</label>-->
+<!--    <select th:field="*{gender}" id="genderSelect">-->
+<!--        <option value="none">Choose a gender</option>-->
+<!--        <option value="MALE">Male</option>-->
+<!--        <option value="FEMALE">Female</option>-->
+<!--        <option value="OTHER">Other</option>-->
+<!--    </select><br/>-->
+    <!--        </div>-->
+    <!--        <div th:case="'DOCTOR'">-->
+    <label for="firstName">First Name:</label>
+    <input type="text" th:field="*{firstName}" required/><br/>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" th:field="*{lastName}" required/><br/>
+
+    <label for="specialization">Specialization:</label>
+    <input type="text" th:field="*{specialization}" required/><br/>
+    <!--        </div>-->
+    <!--    </div>-->
+
+    <button type="submit">Register</button>
+</form>
+
+<!--<script th:inline="javascript">-->
+<!--    document.getElementById('accountTypeSelect').addEventListener('change', function() {-->
+<!--        var accountType = this.value;-->
+<!--        var accountFields = document.getElementById('accountFields');-->
+
+<!--        if (accountType === 'PATIENT') {-->
+<!--            accountFields.innerHTML = /*[[#{patientFields}]]*/ '';-->
+<!--        } else if (accountType === 'DOCTOR') {-->
+<!--            accountFields.innerHTML = /*[[#{doctorFields}]]*/ '';-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+</body>
+</html>
