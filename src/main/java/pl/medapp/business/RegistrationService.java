@@ -3,6 +3,7 @@ package pl.medapp.business;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.medapp.api.dto.UserRegistrationDto;
 import pl.medapp.business.dao.DoctorDAO;
 import pl.medapp.business.dao.PatientDAO;
@@ -20,6 +21,7 @@ public class RegistrationService {
     private final DoctorDAO doctorDAO;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    @Transactional
     public void registerUser(UserRegistrationDto userRegistrationDto) {
         var encodedPassword = passwordEncoder.encode(userRegistrationDto.getPassword());
         User user = User.builder()
@@ -35,7 +37,6 @@ public class RegistrationService {
                 .dateOfBirth(userRegistrationDto.getDateOfBirth())
                 .user(user)
                 .build();
-
             patientDAO.save(patient);
         } else if (userRegistrationDto.getAccountType() == AccountType.DOCTOR) {
             Doctor doctor = Doctor.builder()
@@ -52,5 +53,9 @@ public class RegistrationService {
             doctorDAO.save(doctor);
         }
 //        userDAO.save(user);
+    }
+
+    public void loginUser() {
+
     }
 }

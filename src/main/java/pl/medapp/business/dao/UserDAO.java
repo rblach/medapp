@@ -4,4 +4,6 @@ import pl.medapp.domain.User;
 
 public interface UserDAO {
     void save(User user);
+
+    User findByEmail(String email);
 }

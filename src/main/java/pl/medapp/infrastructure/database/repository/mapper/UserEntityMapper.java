@@ -10,6 +10,7 @@ import pl.medapp.infrastructure.database.entity.UserEntity;
 public interface UserEntityMapper {
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
+    @Mapping(target = "doctor", ignore = true)
     User toDomain(UserEntity userEntity);
 
     @Mapping(source = "email", target = "email")
